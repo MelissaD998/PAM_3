@@ -33,11 +33,11 @@ class _QuizScreenState extends State<QuizScreen> {
     _stopWatchTimer.secondTime.listen((value) {
       setState(() {
         questionElapsedTime = value;
-        progress = progress - (1 / 20);
+        progress = progress - (1 / 20);  //the line
       });
 
       if (value == 0) {
-        _handleNext();
+        _handleNext();  // to the next
       }
     });
     _stopWatchTimer.onStartTimer();
@@ -68,8 +68,8 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  //the characteristics of boxes and column
-  //the positions
+
+  //the position of the icon
   _questionWidget() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,8 @@ class _QuizScreenState extends State<QuizScreen> {
             value: progress),
 
         const SizedBox(height: 24),
-//text of questions
+
+        //text of questions
         Text(
           "Question ${currentQuestionIndex + 1} of ${questionList.length}",
           style: const TextStyle(
@@ -110,11 +111,10 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
         ),
 
-
         const SizedBox(height: 20),
 
         Container(
-          alignment: Alignment.center, //alingment
+          alignment: Alignment.center, //alingment of text
           width: double.infinity,
           padding: const EdgeInsets.all(38),
           child: Text(
@@ -130,7 +130,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  _answerList() {
+  _answerList() { //call the question list
     return Column(
       children: questionList[currentQuestionIndex]
           .answersList
@@ -141,7 +141,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  Widget _answerButton(Answer answer) {
+  Widget _answerButton(Answer answer) {  //characteristics of the answer button
     bool isSelected = answer == selectedAnswer;
 
     return Container(
@@ -170,7 +170,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  _nextButton() {
+  _nextButton() {  //charact of the next button
     return SizedBox(
       height: 49,
       width: MediaQuery.of(context).size.width * 0.5,
@@ -201,8 +201,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
     if (_isLastQuestion()) {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ScoreScreen(
-              answeredQuestions: answeredQuestions,
+          builder: (context) => ScoreScreen(  //next slide
+              answeredQuestions: answeredQuestions,  //send the values
               correctAnsweredQuestions: correctAnsweredQuestions,
               quizTime: totalQuizTime)));
     } else {
